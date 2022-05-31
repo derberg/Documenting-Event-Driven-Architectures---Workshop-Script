@@ -1,0 +1,80 @@
+asyncapi: 2.4.0
+info:
+  title: Shrek App
+  version: 1.0.0
+  description: >
+    Purpose of this app is to have some fun with AsyncAPI and WebSocket and
+    define an interface for ... Shrek.
+
+    ![](https://media.giphy.com/media/10Ug6rDDuG3YoU/giphy-downsized.gif)
+
+    You can use this API to chat with Shrek bot or to get updates about
+    artifical travels to different locations.
+servers:
+  swamp:
+    url: localhost
+    protocol: ws
+channels:
+  /chat:
+    subscribe:
+      summary: Client can receive chat messages.
+      operationId: subChatMessage
+      message:
+        $ref: '#/components/messages/chatMessage'
+    publish:
+      summary: Client can send chat messages.
+      operationId: pubChatMessage
+      message:
+        $ref: '#/components/messages/chatMessage'
+  /travel/status:
+    subscribe:
+      summary: Client can receive travel info status.
+      operationId: subTravelInfo
+      message:
+        $ref: '#/components/messages/travelInfo'
+    bindings: 
+      ws:
+        bindingVersion: 0.1.0
+        query:
+          type: object
+          description: |
+            You can specify to receive travel status info from specific location
+          properties:
+            destination:
+              type: string
+              description: Airport code
+              enum:
+                - BCN
+                - KTW
+                - LCY
+components:
+  messages:
+    chatMessage:
+      summary: Message that you send or receive from chat
+      payload:
+        type: string
+      x-response:
+        description: Location of the information about where reply should be sent to
+        location: "$message.payload#/replyTo" 
+    travelInfo:
+      summary: Message that contains information about travel status.
+      payload: 
+        $ref: "#/components/schemas/travelData"
+      examples:
+        - payload:
+            destination: Far far away
+            distance: Beyond the seven mountains and seven forests
+            arrival: Pretty soon
+  schemas: # payload
+    travelData:
+        type: object
+        properties:
+          destination:
+            description: Name of travel destination.
+            type: string
+          distance:
+            description: How much distance left to the target.
+            type: string
+          arrival:
+            description: Time left to get there.
+            type: string
