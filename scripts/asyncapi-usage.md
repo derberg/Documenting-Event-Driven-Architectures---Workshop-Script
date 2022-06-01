@@ -25,3 +25,8 @@ Just to name few...
 
 Install it and play with it!
 
+### Docs tools
+
+- [React component](https://github.com/asyncapi/asyncapi-react) with standalone bundle and webcomponent
+- [HTML template](https://github.com/asyncapi/html-template) for docs generation
+
