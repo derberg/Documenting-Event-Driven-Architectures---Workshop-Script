@@ -2,27 +2,73 @@
 
 It's like a conversation interface, but for the digital world.
 
-- Do you like when people call you `Mr/Mrs/Miss`?
+> At my previous company, we were talking about few Java developers that they have a "heavy interface" -> meaning "they are not most communicative, and close to a cave man"
+
+![](../assets/convo.png)
+
+- Do you like when people call you `Mr/Mrs/Miss/Sir`?
 - What is your pronoun?
 - Do you care about your titles, should we say `doctor` or `professor`
-- Do you want to be asked a question you do not have an answer to?
 - Are you in the mood for a talk?
+- Can I make jokes about Trump?
 
 Wouldn't it be nice to have it documented and publicly available? Oh wait -> [Solid Project](https://solidproject.org/)
 
 ## Sync vs Async
 
-![](assets/websocket-shrek.webp)
+![](../assets/websocket-shrek.webp)
+
+## What is a Protocol
+
+Good real-life example is the `dyplomatic protocol`:
+- Is guest on the right hand side of the host?
+- when national anthem is played
+- what with the flags?
+
+![](../assets/shakehand.png)
+
+It is a set of rules that describe how information is transmited.
+
+HTTP protocol on example of https://www.asyncapi.com/ :
+
+![](../assets/browser.png)
 
 ## Specifications
 
-* HTTP protocol -> [OpenAPI](https://github.com/OAI/OpenAPI-Specification) for REST API or others specs like GraphQL
-* Async-related protocols -> [AsyncAPI](https://github.com/asyncapi/spec), [CloudEvents](https://github.com/cloudevents/spec) and [Schema Registry](https://github.com/cloudevents/spec/blob/main/schemaregistry/spec.md)
+* HTTP protocol:
+  * [OpenAPI](https://github.com/OAI/OpenAPI-Specification) for REST API (although 3.1 no longer mentions it)
+  * [GraphQL](https://spec.graphql.org/draft/)
+* Async-related protocols:
+  * [AsyncAPI](https://github.com/asyncapi/spec)
+  * [CloudEvents](https://github.com/cloudevents/spec)
+  * [Schema Registry](https://github.com/cloudevents/spec/blob/main/schemaregistry/spec.md)
 
 ## Event Driven Architecture (EDA)
 
 Q: Why do you do event-driven API, is REST API not enough?
-A: Because I want to know what is happening in real-time without asking
+A: Because I want to know what is happening in real-time without asking for an update constantly.
+
+OR
+
+When you send a message, and definitely do not expect a response.
+
+![](https://media.giphy.com/media/l0MYz9Sk06eO8mrXW/giphy.gif)
+
+> there are many other patterns: https://www.enterpriseintegrationpatterns.com/patterns/messaging/
+
+## EDA is pretty old
+
+Just look at the browser and `mouseover` event:
+
+<img src="../assets/hoveroff.png" width="40%"> => 
+<img src="../assets/hoveron.png" width="40%">
+
+Microservices brought event-driven into `renesance`.
+Serverless puts it to the moon.
+
+## EDA protocols
+
+amqp, http, ibmmq, jms, **kafka**, anypointmq, **mqtt**, solace, stomp, **websocket**, mercure
 
 ## EDA Docs
 
@@ -32,36 +78,84 @@ A: Because I want to know what is happening in real-time without asking
   - [RapidAPI](https://rapidapi.com/categories) - Thousands! 
   - [APIs Guru](https://apis.guru/) - 2,351 OpenAPI examples!
   - [APITracker](https://www.apitracker.io/specifications/asyncapi) - 7 AsyncAPI examples...
-- Rest is the same, spec doesn't solve everything
+- REMEMBER: spec is not all you need
 
-## EDA protocols
+## EDA Setup - Simplified
 
-amqp, http, ibmmq, jms, kafka, anypointmq, mqtt, solace, stomp, websocket, mercure
-
-## EDA Actors - Simplified
+> These two perspectives cause some headache in AsyncAPI
 
 * Clients & Server
   <br/>
     ```mermaid
     graph TD
-    server1[Server -> ws://localhost/travel/status]
-    user1[Client -> Browser]
-    user1 --> server1
-    user2[Client -> Mobile]
-    user2 --> server1
+      server1[Server -> ws://flypoland.pl/travel/status]
+      user1[Client -> Browser]
+      user1 --> server1
+      user2[Client -> Mobile]
+      user2 --> server1
     ```
   <br/>
 * Producers, consumers and message broker in the middle -> `fire and forget`
   <br/>
+    **Step 1**
     ```mermaid
     graph TD
-    server1[(mqtt://localhost:1883)]
-    FlightMonitorService[Flight Monitor Service]
-    FlightMonitorService -- flight/update --> server1
-    FlightNotifierService[Flight Notifier Service]
-    server1 -- flight/update --> FlightNotifierService
-    FlightSubscriberService[Flight Subscriber Service]
-    FlightSubscriberService -- flight/queue --> server1
-    server1 -- flight/queue --> FlightMonitorService
+      NotificationSubscribeUI[Give-Me-Flight-Status UI]
+      NotificationSubscribeUI -- HTTP POST --> FlightSubscriberService
+    ```
+    **Step 2**
+    ```mermaid
+    graph TD
+      server1{mqtt://flypoland.pl:1883}
+      NotificationSubscribeUI[Give-Me-Flight-Status UI]
+      NotificationSubscribeUI -- HTTP POST --> FlightSubscriberService
+      FlightSubscriberService[Flight Subscriber Service]
+      FlightSubscriberService -- flight/queue --> server1
+    ```
+    **Step 3**
+    ```mermaid
+    graph TD
+      server1{mqtt://flypoland.pl:1883}
+      NotificationSubscribeUI[Give-Me-Flight-Status UI]
+      FlightMonitorService[Flight Monitor Service]
+      NotificationSubscribeUI -- HTTP POST --> FlightSubscriberService
+      FlightMonitorService -- flight/status --> server1
+      FlightSubscriberService[Flight Subscriber Service]
+      FlightSubscriberService -- flight/queue --> server1
+      server1 -- flight/queue --> FlightMonitorService
+    ```
+    **Step 4**
+    ```mermaid
+    graph TD
+      server1{mqtt://flypoland.pl:1883}
+      NotificationSubscribeUI[Give-Me-Flight-Status UI]
+      FlightMonitorService[Flight Monitor Service]
+      NotificationSubscribeUI -- HTTP POST --> FlightSubscriberService
+      FlightMonitorService -- flight/status --> server1
+      FlightNotifierService[User Notifier Service]
+      server1 -- flight/status --> FlightNotifierService
+      FlightSubscriberService[Flight Subscriber Service]
+      FlightSubscriberService -- flight/queue --> server1
+      server1 -- flight/queue --> FlightMonitorService
+      SMSService[External SMS Service]
+      FlightNotifierService -- HTTP POST --> SMSService
+    ```
+    **Final**
+    ```mermaid
+    graph TD
+        NotificationSubscribeUI[Give-Me-Flight-Status UI]
+        NotificationSubscribeUI -- HTTP POST --> FlightSubscriberService
+      subgraph EDA World
+        FlightMonitorService[Flight Monitor Service]
+        server1{mqtt://flypoland.pl:1883}
+        FlightMonitorService -- flight/status --> server1
+        FlightNotifierService[User Notifier Service]
+        server1 -- flight/status --> FlightNotifierService
+        FlightSubscriberService[Flight Subscriber Service]
+        FlightSubscriberService -- flight/queue --> server1
+        server1 -- flight/queue --> FlightMonitorService
+      end
+      SMSService[External SMS Service]
+      FlightNotifierService -- HTTP POST --> SMSService
     ```
 
