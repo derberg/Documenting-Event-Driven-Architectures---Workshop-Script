@@ -14,7 +14,7 @@ Yes, just joking, no human would choose JSON...right?
 We release regularly every few months. Learn more from [official release process instruction](https://github.com/asyncapi/spec/blob/master/RELEASE_PROCESS.md).
 
 ```yaml
-asyncapi: 2.4.0
+asyncapi: 2.4.0 #https://github.com/asyncapi/spec/releases
 ```
 
 ### 4. Provide overal info about the App
@@ -39,6 +39,8 @@ servers:
     url: localhost
     protocol: ws
 ```
+
+> Sometimes it is the server that points directly to the app (WebSocket) but can also be a remote server, broker address.
 
 ### 6. What are the communication channels
 
@@ -79,7 +81,7 @@ components:
                 type: string
             arrival:
                 description: Time left to get there.
-            t   type: string
+                type: string
 ```
 
 and now reference inside the message.
@@ -89,7 +91,8 @@ components:
   messages:
     travelInfo:
       summary: Message that contains information about travel status.
-      payload: "#/components/schemas/travelData"
+      payload: 
+        $ref: "#/components/schemas/travelData"
       examples:
         - payload:
             destination: Far far away
