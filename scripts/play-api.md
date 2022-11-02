@@ -44,5 +44,5 @@ Install [websocat](https://github.com/vi/websocat#installation) to perform WebSo
 1. Go to [this Postman Workspace with WebSocket APIs](https://www.postman.com/derberg/workspace/websocket-apis-mix).
 2. Right-click on the `Kraken API` collection located at the left side of the page (alternatively, you can click on the `...` icon, which shows when you hover on `Kraken API`).
 3. Select the `Create a fork` option from the list.
-4. Go to your forked workspace and use the `Kraken API` collection to ping the server
+4. Go to your forked workspace and use the `Kraken API` collection to ping the server.
 5. Use the `Kraken API` collection to send the subscribe and unsubscribe messages.
