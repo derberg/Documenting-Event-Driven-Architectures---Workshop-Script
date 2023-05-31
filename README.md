@@ -15,7 +15,7 @@ aka `How the heck can I use this WebSocket API`.
 
 Answer some questions so we learn what we didn't know.
 
-https://forms.gle/EN59CseSiL1fahuq6
+[Google Form](https://forms.gle/zSmv3vTtJH6uhMPj9)
 
 ### Agenda
 
@@ -26,6 +26,3 @@ https://forms.gle/EN59CseSiL1fahuq6
 1. [Create your first AsyncAPI file](scripts/asyncapi-step-by-step.md)
 1. [What can I do with it?](scripts/asyncapi-usage.md)
 1. [Is AsyncAPI enough?](scripts/outside-asyncapi.md)
-
-
-
