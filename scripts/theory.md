@@ -10,7 +10,7 @@ It's like a conversation interface, but for the digital world.
 - What is your pronoun?
 - Do you care about your titles, should we say `doctor` or `professor`
 - Are you in the mood for a talk?
-- Can I make jokes about Trump?
+- Do you like to start with small talk?
 
 Wouldn't it be nice to have it documented and publicly available? Oh wait -> [Solid Project](https://solidproject.org/)
 
@@ -29,7 +29,7 @@ Good real-life example is the `dyplomatic protocol`:
 
 It is a set of rules that describe how information is transmited.
 
-HTTP protocol on example of https://www.asyncapi.com/ :
+HTTP protocol on example of [AsyncAPI website](https://www.asyncapi.com/) :
 
 ![](../assets/browser.png)
 
@@ -46,15 +46,16 @@ HTTP protocol on example of https://www.asyncapi.com/ :
 ## Event Driven Architecture (EDA)
 
 Q: Why do you do event-driven API, is REST API not enough?
-A: Because I want to know what is happening in real-time without asking for an update constantly.
+
+A1: Because I want to know what is happening in real-time without asking for an update constantly.
 
 OR
 
-When you send a message, and definitely do not expect a response.
+A2: When you send a message, and definitely do not expect a response.
 
 ![](https://media.giphy.com/media/l0MYz9Sk06eO8mrXW/giphy.gif)
 
-> there are many other patterns: https://www.enterpriseintegrationpatterns.com/patterns/messaging/
+> there are many other patterns: [Messaging Patterns](https://www.enterpriseintegrationpatterns.com/patterns/messaging/)
 
 ## EDA is pretty old
 
@@ -76,8 +77,8 @@ amqp, http, ibmmq, jms, **kafka**, anypointmq, **mqtt**, solace, stomp, **websoc
 - Not widely visible as REST API
   - [Programmableweb](https://www.programmableweb.com/category/all/apis) - 24,471 (Async APIs around 170)
   - [RapidAPI](https://rapidapi.com/categories) - Thousands! 
-  - [APIs Guru](https://apis.guru/) - 2,351 OpenAPI examples!
-  - [APITracker](https://www.apitracker.io/specifications/asyncapi) - 7 AsyncAPI examples...
+  - [APIs Guru](https://apis.guru/) - 2,529 OpenAPI examples!
+- [APITracker](https://www.apitracker.io/specifications/asyncapi) - 7 AsyncAPI examples...
 - REMEMBER: spec is not all you need
 
 ## EDA Setup - Simplified
