@@ -172,7 +172,7 @@ components:
 
 ### BONUS
 
-- You could have just copy [this AsyncAPI file](./asyncapi.yml) instead of following step by step
+- You could have just copy [this AsyncAPI file](../asyncapi.yml) instead of following step by step
 - For `traits` example just have a look at [this Kafka example](https://github.com/asyncapi/spec/blob/v2.4.0/examples/streetlights-kafka.yml#L159)
 - For more reuse examples with `$ref` across files, look at [this social media example](https://github.com/asyncapi/spec/blob/v2.4.0/examples/social-media/comments-service/asyncapi.yaml)
 
