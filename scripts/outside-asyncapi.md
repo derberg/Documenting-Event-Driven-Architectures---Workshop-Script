@@ -22,3 +22,5 @@ Most common:
   - Concepts
   - Basically the [Diataxis framework](https://diataxis.fr/)
 
+
+That is it. And don't worry, this workshop was recorded once so you can get back to in in the future -> https://www.youtube.com/playlist?list=PLbi1gRlP7piiaD67o1F4EOPoZztg2r8l6
