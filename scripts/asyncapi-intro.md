@@ -21,7 +21,7 @@
 
 #### Flexibility
 
-  - Protocol agnostic aka [`bindings` feature](https://github.com/asyncapi/bindings). Like with [MQTT](https://github.com/asyncapi/bindings/tree/master/mqtt) when you connect to it, [`clientId`](https://github.com/asyncapi/spec/blob/v2.4.0/examples/social-media/comments-service/asyncapi.yaml#L14) must be provieded
+  - Protocol agnostic aka [`bindings` feature](https://github.com/asyncapi/bindings). Like with [MQTT](https://github.com/asyncapi/bindings/tree/master/mqtt) when you connect to it, [`clientId`](https://github.com/asyncapi/spec/blob/v2.4.0/examples/social-media/comments-service/asyncapi.yaml#L14) must be provided
   - Multiple message schema formats (`schemaFormat`) aka `"Just reuse what you already have defined in other systems"` -> [AsyncAPI Schema](https://www.asyncapi.com/docs/specifications/v2.4.0#schemaObject), [JSON Schema](https://json-schema.org/), [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/3.0.0.md#data-types), [RAML DT](https://github.com/raml-org/raml-spec/blob/master/versions/raml-10/raml-10.md#raml-data-types), [Avro](https://avro.apache.org/docs/current/spec.html)
       ```
       //example message data - GOOD
