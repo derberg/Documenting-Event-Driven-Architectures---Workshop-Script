@@ -1,6 +1,6 @@
 ## What is API
 
-It's like a conversation interface, but for the digital world.
+It's like a humans conversation interface, but for the digital world.
 
 > At my previous company, we were talking about few Java developers that they have a "heavy interface" -> meaning "they are not most communicative, and close to a cave man"
 
@@ -20,14 +20,17 @@ Wouldn't it be nice to have it documented and publicly available? Oh wait -> [So
 
 ## What is a Protocol
 
-Good real-life example is the `dyplomatic protocol`:
-- Is guest on the right hand side of the host?
-- when national anthem is played
-- what with the flags?
+Good real-life example is the `dyplomatic protocol`
 
 ![](../assets/shakehand.png)
 
-It is a set of rules that describe how information is transmited.
+- New mission establishment
+- Credentials handover
+- Appointing new representatives
+
+Example protocol implementation is the [United Nations manual of protocol](https://www.un.org/dgacm/en/content/protocol/manual-of-protocol).
+
+On technical side: It is a set of rules that describe how information is transmited.
 
 HTTP protocol on example of [AsyncAPI website](https://www.asyncapi.com/) :
 
@@ -101,14 +104,14 @@ amqp, http, ibmmq, jms, **kafka**, anypointmq, **mqtt**, solace, stomp, **websoc
     **Step 1**
     ```mermaid
     graph TD
-      NotificationSubscribeUI[Give-Me-Flight-Status UI]
+      NotificationSubscribeUI[Subscribe-Me-For-Flight-Status UI]
       NotificationSubscribeUI -- HTTP POST --> FlightSubscriberService
     ```
     **Step 2**
     ```mermaid
     graph TD
       server1{mqtt://flypoland.pl:1883}
-      NotificationSubscribeUI[Give-Me-Flight-Status UI]
+      NotificationSubscribeUI[Subscribe-Me-For-Flight-Status UI]
       NotificationSubscribeUI -- HTTP POST --> FlightSubscriberService
       FlightSubscriberService[Flight Subscriber Service]
       FlightSubscriberService -- flight/queue --> server1
@@ -117,7 +120,7 @@ amqp, http, ibmmq, jms, **kafka**, anypointmq, **mqtt**, solace, stomp, **websoc
     ```mermaid
     graph TD
       server1{mqtt://flypoland.pl:1883}
-      NotificationSubscribeUI[Give-Me-Flight-Status UI]
+      NotificationSubscribeUI[Subscribe-Me-For-Flight-Status UI]
       FlightMonitorService[Flight Monitor Service]
       NotificationSubscribeUI -- HTTP POST --> FlightSubscriberService
       FlightMonitorService -- flight/status --> server1
@@ -129,7 +132,7 @@ amqp, http, ibmmq, jms, **kafka**, anypointmq, **mqtt**, solace, stomp, **websoc
     ```mermaid
     graph TD
       server1{mqtt://flypoland.pl:1883}
-      NotificationSubscribeUI[Give-Me-Flight-Status UI]
+      NotificationSubscribeUI[Subscribe-Me-For-Flight-Status UI]
       FlightMonitorService[Flight Monitor Service]
       NotificationSubscribeUI -- HTTP POST --> FlightSubscriberService
       FlightMonitorService -- flight/status --> server1
@@ -144,7 +147,7 @@ amqp, http, ibmmq, jms, **kafka**, anypointmq, **mqtt**, solace, stomp, **websoc
     **Final**
     ```mermaid
     graph TD
-        NotificationSubscribeUI[Give-Me-Flight-Status UI]
+        NotificationSubscribeUI[Subscribe-Me-For-Flight-Status UI]
         NotificationSubscribeUI -- HTTP POST --> FlightSubscriberService
       subgraph EDA World
         FlightMonitorService[Flight Monitor Service]

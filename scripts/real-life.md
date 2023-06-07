@@ -11,7 +11,7 @@ Category | Sub Category | Product | Docs | Protocol | Using AsyncAPI?
 | | | [ClearBlade IoT Platform](https://docs.clearblade.com/v/4/messaging/) | [Link](https://docs.clearblade.com/v/4/messaging/) | MQTT | ?
 | | Tracking | [Sewio](https://www.sewio.net/) | [Link](https://docs.sewio.net/docs/websockets-api-3244447.html) | WebSocket | ?
 | | Drones | [Parrot](https://www.parrot.com/) | [Link](https://developer.parrot.com/docs/webserver-api/module_info.html#module-info-websocket-events-v1) | WebSocket | ?
-| | Smart | [Kone](https://www.kone.com/en/) | - | WebSocket | [YES](https://www.kone.com/en/)
+| | Smart | [Kone](https://www.kone.com/en/) | - | WebSocket | [YES](https://dev.kone.com/api/v1/spec/elevator-websocket-api-v2.yaml)
 | Messaging/Chat | | [Mailsac](https://mailsac.com/) | [Link](https://mailsac.com/docs/api/#tag/Web-Sockets) | WebSocket | ?
 | | | [Restream.io](https://restream.io) | [Link](https://developers.restream.io/docs#chat-getting-started) | WebSocket | ?
 | | | [Rocket.chat](https://rocket.chat/) | [Link](https://developer.rocket.chat/reference/api/realtime-api) | WebSocket | ?

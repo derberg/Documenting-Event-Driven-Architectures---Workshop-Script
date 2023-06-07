@@ -8,7 +8,7 @@ aka `How the heck can I use this WebSocket API`.
 
 - Impostor syndrome is a fact, now hide it in the basement
 - It is not about knowing the answer, it is about asking right questions
-- Good docs is a collective work of tech writers with engineers and product owners
+- Good docs is a collective work of tech writers with engineers and product managers
 - Join https://asyncapi.com/slack-invite to stay connected with the community
 
 ### Survey first!
